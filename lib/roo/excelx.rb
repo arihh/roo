@@ -32,7 +32,7 @@ class Roo::Excelx < Roo::GenericSpreadsheet
     'h:mm:ss AM/PM' => :date,
     'h:mm' => :time,
     'h:mm:ss' => :time,
-    'm/d/yy h:mm' => :date,
+    'm/d/yy h:mm' => :datetime,
     '#,##0 ;(#,##0)' => :float,
     '#,##0 ;[Red](#,##0)' => :float,
     '#,##0.00;(#,##0.00)' => :float,
@@ -379,7 +379,7 @@ class Roo::Excelx < Roo::GenericSpreadsheet
     @cell[sheet][key] =
       case @cell_type[sheet][key]
       when :float
-        v.to_f
+        v
       when :string
         v
       when :date
