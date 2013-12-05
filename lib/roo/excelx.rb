@@ -49,6 +49,7 @@ class Roo::Excelx < Roo::GenericSpreadsheet
     "dd/mm/yy\\ hh:mm" => :datetime,
     'dd/mmm/yy' => :date, # 2011-05-21
     'yyyy-mm-dd' => :date, # 2011-09-16
+    'yyyy/m/d\ h:mm:ss' => :datetime,
     # was used in a spreadsheet file from a windows phone
   }
   STANDARD_FORMATS = {
@@ -385,7 +386,7 @@ class Roo::Excelx < Roo::GenericSpreadsheet
       when :date
         (Date.new(1899,12,30)+v.to_i).strftime("%Y-%m-%d")
       when :datetime
-        (DateTime.new(1899,12,30)+v.to_f).strftime("%Y-%m-%d %H:%M:%S")
+        (DateTime.new(1899,12,30)+v.to_f.round(11).round(10).round(9)).strftime("%Y-%m-%d %H:%M:%S")
       when :percentage
         v.to_f
       when :time
